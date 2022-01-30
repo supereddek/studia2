@@ -9,6 +9,7 @@ public class PoliceCar extends Vehicle {
 
     public PoliceCar(Component c){
         super(c);
+        this.vehicleType = VehicleType.POLICE_CAR;
     }
 
     @Override

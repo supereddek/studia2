@@ -9,6 +9,7 @@ public class FireTruck extends Vehicle {
 
     public FireTruck(Component c){
         super(c);
+        this.vehicleType = VehicleType.FIRE_TRUCK;
     }
 
     @Override

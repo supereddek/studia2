@@ -43,16 +43,8 @@ public class SimulationFrame extends JFrame {
                 vehicle.paint(g);
             }
 
-            for(Vehicle vehicle : VehicleDispatcher.getInstance().ambulances) {
-                vehicle.paint(g);
-            }
-
-            for(Vehicle vehicle : VehicleDispatcher.getInstance().firetrucks) {
-                vehicle.paint(g);
-            }
-
-            for(Vehicle vehicle : VehicleDispatcher.getInstance().policecars) {
-                vehicle.paint(g);
+            for(Vehicle veh : VehicleDispatcher.getInstance().vehicles) {
+                veh.paint(g);
             }
         }
     }

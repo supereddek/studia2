@@ -14,6 +14,7 @@ public abstract class Vehicle {
 
     protected static final int OBJECT_WIDTH = 10;
     protected static final int OBJECT_HEIGHT = 10;
+    protected VehicleType vehicleType;
 
     // Component where witness is going to be drawn at
     Component c;
@@ -108,6 +109,7 @@ public abstract class Vehicle {
     public void newTask(int destX, int destY) {
         this.destX = destX;
         this.destY = destY;
+        this.isBusy = true;
 
         vehicleThread = new Thread(vehicleRunnable);
         vehicleThread.start();

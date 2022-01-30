@@ -1,5 +1,6 @@
 package simulation.simulation;
 
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -13,9 +14,7 @@ public class VehicleDispatcher {
     private static final int POLICE_CAR_COUNT = 10;
 
     private static Component component;
-    public List<PoliceCar> policecars = new ArrayList<PoliceCar>();
-    public List<Ambulance> ambulances = new ArrayList<Ambulance>();
-    public List<FireTruck> firetrucks = new ArrayList<FireTruck>();
+    public List<Vehicle> vehicles = new ArrayList<Vehicle>();
 
     public static VehicleDispatcher getInstance() {
         if (INSTANCE == null)
@@ -28,13 +27,13 @@ public class VehicleDispatcher {
             ;//throw new Exception("component is null");
 
         for (int i = 0; i < FIRE_TRUCK_COUNT; i++) {
-            firetrucks.add(new FireTruck(component));
+            vehicles.add(new FireTruck(component));
         }
         for (int i = 0; i < AMBULANCE_COUNT; i++) {
-            ambulances.add(new Ambulance(component));
+            vehicles.add(new Ambulance(component));
         }
         for (int i = 0; i < POLICE_CAR_COUNT; i++) {
-            policecars.add(new PoliceCar(component));
+            vehicles.add(new PoliceCar(component));
         }
     }
 
@@ -43,31 +42,15 @@ public class VehicleDispatcher {
     }
 
     public synchronized void dispatchVehicle(int X, int Y, VehicleType vehicle) {
-        switch (vehicle) {
-            case AMBULANCE:
-                for (Ambulance ambulance : ambulances) {
-                    if (ambulance.isBusy())
-                        continue;
-                    ambulance.newTask(X, Y);
-                    return;
+        for (Vehicle veh : vehicles) {
+            if (veh.vehicleType == vehicle){
+                if(veh.isBusy()) {
+                    continue;
                 }
-                break;
-            case FIRE_TRUCK:
-                for (FireTruck firetruck : firetrucks) {
-                    if (firetruck.isBusy())
-                        continue;
-                    firetruck.newTask(X, Y);
-                    return;
-                }
-                break;
-            case POLICE_CAR:
-                for (PoliceCar policecar : policecars) {
-                    if (policecar.isBusy())
-                        continue;
-                    policecar.newTask(X, Y);
-                    return;
-                }
-                break;
+                veh.newTask(X, Y);
+                return;
+            }
+
         }
     }
 }

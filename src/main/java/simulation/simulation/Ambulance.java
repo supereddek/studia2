@@ -9,6 +9,7 @@ public class Ambulance extends Vehicle {
 
     public Ambulance(Component c){
         super(c);
+        this.vehicleType = VehicleType.AMBULANCE;
     }
 
     @Override
